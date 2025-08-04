@@ -29,7 +29,11 @@
 	hard_drive = new /obj/item/computer_hardware/hard_drive/small(src)
 
 /obj/item/modular_computer/silicon/pai/install_default_programs()
-	. = ..()
+	hard_drive.store_file(new /datum/computer_file/program/filemanager(src))
+	hard_drive.store_file(new /datum/computer_file/program/ntnetdownload(src))
+	hard_drive.store_file(new /datum/computer_file/program/chat_client(src))
 	hard_drive.store_file(new /datum/computer_file/program/pai_directives(src))
 	hard_drive.store_file(new /datum/computer_file/program/pai_radio(src))
 	hard_drive.store_file(new /datum/computer_file/program/pai_flashlight(src))
+	hard_drive.remove_file(hard_drive.find_file_by_name("clientmanager"))
+	addtimer(CALLBACK(src, PROC_REF(register_chat)), 1 SECOND)
