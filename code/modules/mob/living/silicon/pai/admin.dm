@@ -25,8 +25,12 @@
 	var/mob/living/silicon/pai/pai = new(card)
 	pai.key = pai_key
 	card.setPersonality(pai)
+	pai.id_card.InitializeChatUser()
+	pai.id_card.chat_user.username = "[name], Personal AI"
+
 	if(pai.mind)
 		pai.mind.current.client.init_verbs()
 
-	if(name)
-		pai.SetName(name)
+	if(name) //using setname here would set the wrong username for NTRchat
+		pai.real_name = name
+		pai.name = pai.real_name

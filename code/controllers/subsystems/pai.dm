@@ -99,6 +99,9 @@ SUBSYSTEM_DEF(pai)
 			card.setPersonality(pai)
 			card.looking_for_personality = 0
 
+			pai.id_card.InitializeChatUser()
+			pai.id_card.chat_user.username = "[name], Personal AI"
+
 			if(pai.mind)
 				update_antag_icons(pai.mind)
 				pai.mind.current.client.init_verbs()
